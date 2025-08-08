@@ -6,6 +6,11 @@
 	"output": {
 		"abi": [
 			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "string",
@@ -42,6 +47,78 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "creationTimestamp",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "linkId",
+						"type": "string"
+					}
+				],
+				"name": "deleteLlink",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "linkId",
+						"type": "string"
+					}
+				],
+				"name": "getHoursMinSec",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "url",
+								"type": "string"
+							},
+							{
+								"internalType": "address",
+								"name": "owner",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "fee",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "sales",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "atCreate",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct LinkShield.Link",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "string",
@@ -66,6 +143,16 @@
 							{
 								"internalType": "uint256",
 								"name": "fee",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "sales",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "atCreate",
 								"type": "uint256"
 							}
 						],
@@ -113,6 +200,19 @@
 				"outputs": [],
 				"stateMutability": "payable",
 				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "newComission",
+						"type": "uint256"
+					}
+				],
+				"name": "setComi",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
 			}
 		],
 		"devdoc": {
@@ -143,11 +243,11 @@
 	},
 	"sources": {
 		"contracts/LinkShield.sol": {
-			"keccak256": "0x57e88e46952a89679e64d638e1d5670d30fe9be91dc450064ad4022af8abf7a8",
+			"keccak256": "0x8d41c0aa275941cff2dbe0c215fea9b9d70a6e613be9dc1f61eeaba50674eaa5",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://d84485f910bc34b18a2569d2025de73c0224dfaaf269f408fa911e65aabe91f1",
-				"dweb:/ipfs/QmRGdovjSAPFGLmL2dULvJqu7b77XFPgmFrUMStvuCeopY"
+				"bzz-raw://9522117b5c09cc88fb7ecaa87accc09a2aeab2863961edda9b891287bfcc8efd",
+				"dweb:/ipfs/QmXDugrg6ySiHyCcki1uVRSTjub1yBBvKwfNmN6AoCaoYq"
 			]
 		}
 	},
