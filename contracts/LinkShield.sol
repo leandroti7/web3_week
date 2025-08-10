@@ -17,7 +17,7 @@ contract LinkShield {
     mapping (string => Link) private links; // Mapping para mapear cada objeto link
     mapping (string => mapping ( address => bool)) public hasAccess; // mapping para verificar se o usuario tem acesso
     uint256 public creationTimestamp;
-    address admin = address(0);
+    address public immutable admin;
 
     constructor() {
         creationTimestamp = block.timestamp;
@@ -77,5 +77,11 @@ contract LinkShield {
             link.url = "";
 
         return  link;
+    }
+
+    function withdraw() public  {
+        require(msg.sender == admin, "Ypu do not permission");
+        uint256 amount = address(this).balance;
+        payable(admin).transfer(amount);
     }
 }
