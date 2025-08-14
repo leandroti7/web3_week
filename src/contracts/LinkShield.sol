@@ -34,15 +34,15 @@ contract LinkShield {
         commission = newComission;
     }
 
-    function getHoursMinSec(string calldata linkId) public view returns  (Link memory) {
-        Link memory link = links[linkId];
-        uint totalSeconds = creationTimestamp % 86400;
-        uint8 hour = uint8(totalSeconds / 3600);
-        uint8 minute = uint8(totalSeconds %  3600 / 60);
+    // function getHoursMinSec(string calldata linkId) public view returns  (Link memory) {
+    //     Link memory link = links[linkId];
+    //     uint totalSeconds = creationTimestamp % 86400;
+    //     uint8 hour = uint8(totalSeconds / 3600);
+    //     uint8 minute = uint8(totalSeconds %  3600 / 60);
         
-        link.atCreate = hour;
-        return link;
-    }
+    //     link.atCreate = hour;
+    //     return link;
+    // }
 
     function addLink(string calldata url, string calldata linkId, uint256 fee) public {
         Link memory link = links[linkId];
