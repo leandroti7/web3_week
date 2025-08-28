@@ -1,17 +1,30 @@
 "use client"
 import { useState } from "react";
+import { addCampaign, getLastCampaignId } from "@/services/Web3Services";
 
 export default function Create() {
 
     const [message, setMessage] = useState("");
-    const [campaign, setCampaign] = useState({});
+    const [campaign, setCampaign] = useState({
+        title: "",
+        description:"",
+        imageUrl: "",
+        videoUrl: ""
+    });
 
     function onInputChange(evt) {
         setCampaign(prevState => ({...prevState, [evt.target.id]: evt.target.value }))
     }
 
     function btnSaveClick() {
-        setMessage(JSON.stringify(campaign));
+        setMessage("Salvando a campanha...aguarde...");
+        addCampaign(campaign)
+            .then(tx => getLastCampaignId())
+            .then(id => setMessage(`Campanha foi salve com o ID ${id}. Em alguns instantes ela estará pronta para receber doações, use esse link divulgala http://localhost:3000/donate/${id}`))
+            .catch(err => {
+                console.error(err);
+                setMessage(err.message);                
+            })
     }
 
     return (
