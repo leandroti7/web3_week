@@ -1,7 +1,7 @@
 import Web3 from "web3";
 import ABI from "./ABI.json";
 
-const CONTRACT_ADDRESS = "0x673922e4800753Ee68FDb45Ff25135A2d8bbf48b";
+const CONTRACT_ADDRESS = "0x0f596E0106ddc53A1f9f9633817B3462404f9576";
 
 export async function doLogin() {
     if(!window.ethereum) throw new Error("Wallet não encontrada!");
@@ -28,4 +28,17 @@ export async function addCampaign(campaign) {
 export async function getLastCampaignId()  {
     const contract = getContract();
     return contract.methods.nextId().call();
+}
+
+export async function getCampaign(id) {
+    const contract = getContract();
+    return contract.methods.campaigns(id).call();
+}
+
+export async function donate(id, donation) {
+    await doLogin();
+    const contract = getContract();
+    return contract.methods.donate(id).send({
+        value: Web3.utils.toWei(donation, "ether")
+    })
 }
