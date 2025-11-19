@@ -3,21 +3,20 @@
 import Head from "next/head";
 import { doLogin } from "../services/Web3Service";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
 
+  const { push } = useRouter();
   const [message, setMessage] = useState("");
 
   function btnLoginClick() {
     setMessage("Conectando com a Rabby...")
     doLogin()
-      .then(wallet => setMessage(wallet))
+      .then(wallet => push("/timeline"))
       .catch(err => {
-        setMessage('Erro detalhado:', {
-          message: err.message,
-          status: err.status,
-          stack: err.stack
-        });
+        console.error(err);
+        setMessage(err.message);
       });
   }
 

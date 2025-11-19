@@ -1,4 +1,7 @@
 import Web3 from "web3";
+import ABI from "./ABI.json";
+
+const CONTRACT_ADDRESS = "0x9531F45f4a0845D800D44d2D7a1f94b0BEc8Fac4"
 
 export async function doLogin() {
     if (!window.ethereum) throw new Error("No Rabby found");
@@ -10,4 +13,29 @@ export async function doLogin() {
     localStorage.setItem("Wallet", accounts[0]);
 
     return accounts[0];
+}
+
+function getContract() {
+    if(!window.ethereum) throw new Error("No Metamask found");
+
+    const web3 = new Web3(window.ethereum);
+    const from = localStorage.getItem("wallet");
+
+    return new web3.eth.Contract(ABI, CONTRACT_ADDRESS, { from });
+}
+
+export async function addTwett(text) {
+    const contract = getContract();
+    return contract.methods.addTweet(text).send();
+}
+
+export async function changeUserName(newName) {
+    const contract = getContract();
+    return contract.methods.changeUsername(newName).send();
+}
+
+export async function getLastTweets(page) {
+    const contract = getContract();
+    const tweets = await contract.methods.getLastTweets(page).call();
+    return tweets.map(t => { return { ...t } }).filter(t => t.text !== "");
 }
